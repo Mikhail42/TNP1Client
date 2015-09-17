@@ -17,8 +17,10 @@ public class Client {
             } catch(IOException e) {
                 System.out.println("Проверьте корректность данных в файлах. Выброшено исключение "+e.toString());
             } finally {
-                s.getOutputStream().close();
-                s.getInputStream().close();
+                // socket закрывается на сервере!
+                if (!s.isClosed()) s.close();
+                //s.getOutputStream().close();
+                //s.getInputStream().close();
             }
         } catch (UnknownHostException e){
             System.err.println("Проверьте имя хоста. Выброшено исключение "+e.toString());
