@@ -13,7 +13,9 @@ public class Client {
             s = new Socket(HOSTNAME,SOCKEDID);
             try{
                 writeInOS(s);
-                tnp1client.IOMatrix.saveMatrix(FILENAME3, readFromIS(s));
+                String res = readFromIS(s); 
+                if (!res.startsWith("Error")) tnp1client.IOMatrix.saveMatrix(FILENAME3, res);
+                else System.out.println("Проверьте корректность данных в файлах.");
             } catch(IOException e) {
                 System.out.println("Проверьте корректность данных в файлах. Выброшено исключение "+e.toString());
             } finally {
